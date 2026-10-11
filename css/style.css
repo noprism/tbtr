@@ -1,0 +1,180 @@
+/* ------------------------------------------------------------------
+   GMod Loading Screen  -  TBTR
+   Design-Basis: 1920x1080. 1rem = 10px @1920x1080 (wird per JS an die
+   Fenstergroesse angepasst, siehe fit() in loading.js).
+   ------------------------------------------------------------------ */
+
+html {
+  font-size: 0.5208333vw;           /* Fallback ohne JS: 10px bei 1920px Breite */
+  background: #000;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  cursor: default;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-family: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  font-size: 2rem;                  /* 20px im Design */
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+}
+
+/* ---------------------------- Logo ---------------------------- */
+.logo {
+  position: absolute;
+  top: 12rem;
+  left: 50%;
+  width: 40rem;
+  height: 40rem;
+  margin-left: -20rem;
+}
+.logo .ring,
+.logo .mark,
+.logo .logo-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+.logo .logo-img { border-radius: 50%; object-fit: cover; }
+
+.ring {
+  -webkit-animation: ring-spin 26s linear infinite;
+          animation: ring-spin 26s linear infinite;
+}
+@-webkit-keyframes ring-spin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes ring-spin         { from { transform: rotate(0deg); }         to { transform: rotate(360deg); } }
+
+/* ------------------------ Zeilen / Texte ----------------------- */
+.row {
+  position: absolute;
+  height: 3rem;
+  line-height: 3rem;
+  white-space: nowrap;
+}
+
+/* "Synchronizing Data, please wait" + Spinner */
+.sync {
+  left: 13.7rem;
+  bottom: 18.7rem;
+}
+.sync-text { vertical-align: middle; }
+.spinner {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-left: 1.6rem;
+  -webkit-animation: spin 0.9s linear infinite;
+          animation: spin 0.9s linear infinite;
+}
+@-webkit-keyframes spin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes spin         { from { transform: rotate(0deg); }         to { transform: rotate(360deg); } }
+
+/* "Downloading: ..." */
+.download {
+  left: 13.7rem;
+  right: 18rem;
+  bottom: 8.05rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.download span { display: block; overflow: hidden; text-overflow: ellipsis; }
+
+/* "| CURRENT LOADING STATUS |   PERCENTAGE" */
+.status {
+  right: 13.2rem;
+  bottom: 17.8rem;
+  text-align: right;
+  text-transform: uppercase;
+}
+.status .percent { display: inline-block; margin-left: 2rem; min-width: 5rem; text-align: right; }
+
+/* --------------------------- Progressbar ------------------------ */
+.bar {
+  position: absolute;
+  left: 11.1rem;
+  right: 11.7rem;
+  bottom: 13.1rem;
+  height: 3.9rem;
+  border-radius: 2rem;
+  background: #414141;
+  overflow: hidden;
+}
+.bar .fill {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 0;
+  min-width: 0;
+  border-radius: 2rem;
+  background: #d9d9d9;
+  -webkit-transition: width 0.45s ease-out;
+          transition: width 0.45s ease-out;
+}
+/* feine Kante wie im Figma-Design: oben dunkel, unten/rechts hell */
+.bar .bevel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border-radius: 2rem;
+  border-style: solid;
+  border-width: 0.15rem;
+  border-color: rgba(255,255,255,0.32) rgba(255,255,255,0.7) rgba(255,255,255,0.55) rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+
+/* --------------------------- Musik-Player ----------------------- */
+.player {
+  position: absolute;
+  right: 18rem;
+  bottom: 22.8rem;
+  min-width: 20rem;
+  max-width: 55rem;
+}
+.np-title {
+  height: 3rem;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.np-time {
+  position: absolute;
+  right: 0;
+  bottom: 0.7rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  white-space: nowrap;
+}
+.np-time b { font-weight: 400; margin: 0 0.15rem; }
+.np-line {
+  position: relative;
+  height: 0.3rem;
+  margin-top: 0.1rem;
+  border-radius: 0.2rem;
+  background: rgba(255,255,255,0.38);
+  overflow: hidden;
+}
+.np-fill {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 0;
+  background: #f2f2f2;
+}
+.player.off { display: none; }
