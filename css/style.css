@@ -4,6 +4,19 @@
    Fenstergroesse angepasst, siehe fit() in loading.js).
    ------------------------------------------------------------------ */
 
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/Ubuntu-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/Ubuntu-Regular.woff") format("woff");
+}
+
 html {
   font-size: 0.5208333vw;           /* Fallback ohne JS: 10px bei 1920px Breite */
   background: #000;
@@ -44,7 +57,6 @@ body {
   height: 40rem;
   margin-left: -20rem;
 }
-.logo .ring,
 .logo .mark,
 .logo .logo-img {
   position: absolute;
@@ -53,13 +65,6 @@ body {
   height: 100%;
 }
 .logo .logo-img { border-radius: 50%; object-fit: cover; }
-
-.ring {
-  -webkit-animation: ring-spin 26s linear infinite;
-          animation: ring-spin 26s linear infinite;
-}
-@-webkit-keyframes ring-spin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
-@keyframes ring-spin         { from { transform: rotate(0deg); }         to { transform: rotate(360deg); } }
 
 /* ------------------------ Zeilen / Texte ----------------------- */
 .row {

@@ -5,11 +5,7 @@
 <title>Loading…</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Fonts: Ubuntu (UI text). Falls die Seite offline getestet wird, greift der Fallback-Stack. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&amp;display=swap">
-
+<!-- Schriften liegen lokal in fonts/ (siehe @font-face in css/style.css) -->
 <link rel="stylesheet" href="css/style.css">
 
 <!-- Die Hooks (GameDetails, DownloadingFile, ...) muessen sofort existieren, daher im <head>. -->
@@ -22,125 +18,61 @@
 
   <!-- ============ LOGO ============ -->
   <div class="logo" id="logo">
-    <div class="ring"><!-- rotierender Farbverlauf-Ring -->
-      <svg viewBox="0 0 400 400" width="100%" height="100%" aria-hidden="true">
-        <defs>
-          <linearGradient id="ringGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="400">
-            <stop offset="0"    stop-color="#f6e7a6"/>
-            <stop offset="0.16" stop-color="#a99af2"/>
-            <stop offset="0.45" stop-color="#7e66ec"/>
-            <stop offset="0.72" stop-color="#b867dd"/>
-            <stop offset="0.88" stop-color="#8a73ee"/>
-            <stop offset="1"    stop-color="#f6e7a6"/>
-          </linearGradient>
-        </defs>
-        <circle cx="200" cy="200" r="198" fill="none" stroke="url(#ringGrad)" stroke-width="3.6"/>
-      </svg>
-    </div>
-
-    <svg class="mark" viewBox="0 0 400 400" width="100%" height="100%" aria-label="TBTR">
+    <!-- Statisches Logo (keine Animation): Ellipse 400x400 + Schriftzug "TBTR" aus "Libre Barcode 128 Text" (als Pfad eingebettet) -->
+    <svg class="mark" viewBox="0 0 400 400" width="100%" height="100%" role="img" aria-label="TBTR">
       <defs>
-        <clipPath id="disc"><circle cx="200" cy="200" r="196.5"/></clipPath>
-
+        <clipPath id="disc"><circle cx="200" cy="200" r="200"/></clipPath>
         <radialGradient id="discBg" cx="50%" cy="46%" r="60%">
-          <stop offset="0" stop-color="#1f2640"/>
+          <stop offset="0" stop-color="#1f2540"/>
           <stop offset="1" stop-color="#1a182f"/>
         </radialGradient>
-        <radialGradient id="glowYellow"><stop offset="0" stop-color="#7a6320" stop-opacity=".32"/><stop offset="1" stop-color="#8a6f1c" stop-opacity="0"/></radialGradient>
-        <radialGradient id="glowPurple"><stop offset="0" stop-color="#4b36a0" stop-opacity=".26"/><stop offset="1" stop-color="#5a3fc0" stop-opacity="0"/></radialGradient>
-        <radialGradient id="glowPink"><stop offset="0" stop-color="#9a3a9a" stop-opacity=".22"/><stop offset="1" stop-color="#b13bb0" stop-opacity="0"/></radialGradient>
-
-        <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0"    stop-color="#f4ffff"/>
-          <stop offset="0.10" stop-color="#bcd6f8"/>
-          <stop offset="0.35" stop-color="#a6bdfc"/>
-          <stop offset="0.70" stop-color="#8fa3ee"/>
-          <stop offset="1"    stop-color="#7b8fdc"/>
+        <radialGradient id="glowYellow"><stop offset="0" stop-color="#7a6320" stop-opacity=".32"/><stop offset="1" stop-color="#7a6320" stop-opacity="0"/></radialGradient>
+        <radialGradient id="glowPurple"><stop offset="0" stop-color="#4b36a0" stop-opacity=".26"/><stop offset="1" stop-color="#4b36a0" stop-opacity="0"/></radialGradient>
+        <linearGradient id="ringGrad" gradientUnits="userSpaceOnUse" x1="40" y1="40" x2="360" y2="360">
+          <stop offset="0"    stop-color="#f6e7a6"/>
+          <stop offset="0.20" stop-color="#a99af2"/>
+          <stop offset="0.50" stop-color="#7e66ec"/>
+          <stop offset="0.80" stop-color="#b867dd"/>
+          <stop offset="1"    stop-color="#8a73ee"/>
         </linearGradient>
-        <linearGradient id="letterGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#dfe5f4"/>
-          <stop offset="1" stop-color="#7f8aa6"/>
+        <!-- Balken: weiss-cyan oben -> Lavendel unten, Buchstaben: Grau-Blau -->
+        <linearGradient id="glyphGrad" gradientUnits="userSpaceOnUse" x1="0" y1="102" x2="0" y2="284">
+          <stop offset="0"     stop-color="#f4ffff"/>
+          <stop offset="0.07"  stop-color="#bbd5f8"/>
+          <stop offset="0.20"  stop-color="#a9c0fd"/>
+          <stop offset="0.35"  stop-color="#98b0fb"/>
+          <stop offset="0.50"  stop-color="#8296e0"/>
+          <stop offset="0.645" stop-color="#6e84c4"/>
+          <stop offset="0.66"  stop-color="#aab2c8"/>
+          <stop offset="1"     stop-color="#737b94"/>
         </linearGradient>
-
-        <!-- Die 12 Barcode-Balken als Maske -->
-        <mask id="bars" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400">
-          <g fill="#fff">
-            <rect x="68"  y="102" width="12" height="118"/>
-            <rect x="86"  y="102" width="18" height="118"/>
-            <rect x="122" y="102" width="7"  height="118"/>
-            <rect x="134" y="102" width="7"  height="118"/>
-            <rect x="158" y="102" width="7"  height="118"/>
-            <rect x="170" y="102" width="12" height="118"/>
-            <rect x="201" y="102" width="12" height="118"/>
-            <rect x="218" y="102" width="18" height="118"/>
-            <rect x="254" y="102" width="6"  height="118"/>
-            <rect x="266" y="102" width="13" height="118"/>
-            <rect x="296" y="102" width="7"  height="118"/>
-            <rect x="309" y="102" width="17" height="118"/>
-          </g>
-        </mask>
       </defs>
 
       <g clip-path="url(#disc)">
-        <circle cx="200" cy="200" r="197" fill="url(#discBg)"/>
-
-        <!-- langsam wandernde Farb-Glows -->
-        <g>
-          <circle cx="300" cy="330" r="110" fill="url(#glowYellow)"/>
-          <animateTransform attributeName="transform" type="translate" values="0,0; -70,-30; 0,0" keyTimes="0;0.5;1" dur="19s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-        </g>
-        <g>
-          <circle cx="80" cy="300" r="120" fill="url(#glowPurple)"/>
-          <animateTransform attributeName="transform" type="translate" values="0,0; 90,-20; 0,0" keyTimes="0;0.5;1" dur="23s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-        </g>
-        <g>
-          <circle cx="320" cy="60" r="100" fill="url(#glowPink)"/>
-          <animateTransform attributeName="transform" type="translate" values="0,0; -110,40; 0,0" keyTimes="0;0.5;1" dur="17s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-        </g>
-
-        <!-- Barcode: Glas-Verlauf + wandernde "Tinte" hinter den Balken -->
-        <g mask="url(#bars)">
-          <rect x="60" y="100" width="275" height="122" fill="url(#barGrad)"/>
-
-          <g class="ink">
-            <path d="M52,214 C74,196 122,202 146,222 C158,234 124,244 96,238 C68,232 40,228 52,214Z" fill="#1b2a52" opacity=".9"/>
-            <path d="M120,196 C168,222 212,168 258,200 S326,236 352,214" fill="none" stroke="#1a2748" stroke-width="6" stroke-linecap="round" opacity=".9"/>
-            <path d="M122,192 C170,218 212,164 258,196 S324,232 350,210" fill="none" stroke="#e6efff" stroke-width="1.2" opacity=".75"/>
-            <animateTransform attributeName="transform" type="translate" values="0,0; -46,6; 0,0" keyTimes="0;0.5;1" dur="13s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-          </g>
-          <g class="ink">
-            <ellipse cx="205" cy="116" rx="14" ry="19" fill="#3f5fb8" opacity=".8"/>
-            <circle cx="262" cy="170" r="12" fill="none" stroke="#1d2c58" stroke-width="3" opacity=".9"/>
-            <circle cx="262" cy="170" r="5.5" fill="none" stroke="#1d2c58" stroke-width="2.4" opacity=".9"/>
-            <path d="M300,100 C312,116 300,134 316,150" fill="none" stroke="#2b3f7e" stroke-width="5" stroke-linecap="round" opacity=".8"/>
-            <animateTransform attributeName="transform" type="translate" values="0,0; 38,-8; 0,0" keyTimes="0;0.5;1" dur="17s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-          </g>
-        </g>
-
-        <!-- helle Kanten links an jedem Balken (Glas-Effekt) -->
-        <g fill="#fff" opacity=".8">
-          <rect x="68"  y="102" width="1.4" height="118"/>
-          <rect x="86"  y="102" width="1.4" height="118"/>
-          <rect x="122" y="102" width="1.4" height="118"/>
-          <rect x="134" y="102" width="1.4" height="118"/>
-          <rect x="158" y="102" width="1.4" height="118"/>
-          <rect x="170" y="102" width="1.4" height="118"/>
-          <rect x="201" y="102" width="1.4" height="118"/>
-          <rect x="218" y="102" width="1.4" height="118"/>
-          <rect x="254" y="102" width="1.4" height="118"/>
-          <rect x="266" y="102" width="1.4" height="118"/>
-          <rect x="296" y="102" width="1.4" height="118"/>
-          <rect x="309" y="102" width="1.4" height="118"/>
-        </g>
-
-        <!-- T B T R -->
-        <g fill="none" stroke="url(#letterGrad)" stroke-width="3" stroke-linejoin="miter">
-          <path d="M86,240.5 H116 M101,240.5 V282"/>
-          <path d="M153.5,240 V282 M153.5,240.5 H172 A10,10 0 0 1 172,260.5 H153.5 M153.5,260.5 H173 A10.5,10.5 0 0 1 173,281.5 H153.5"/>
-          <path d="M218,240.5 H248 M233,240.5 V282"/>
-          <path d="M286,282 V240.5 H302 A10,10 0 0 1 302,260.5 H286 M299,260.5 L314,282"/>
-        </g>
+        <circle cx="200" cy="200" r="200" fill="url(#discBg)"/>
+        <circle cx="300" cy="330" r="110" fill="url(#glowYellow)"/>
+        <circle cx="80" cy="300" r="120" fill="url(#glowPurple)"/>
       </g>
+
+      <path fill="url(#glyphGrad)" d="M68 220V102H80V220ZM86 220V102H104V220ZM122 220V102H128V220ZM97.8 242H84.8V237.4H116.8V242H103.2V283.8H97.8Z M134 220V102H140V220ZM158 220V102H164V220ZM170 220V102H182V220ZM152 237.4H165.2Q172.8 237.4 176.6 240.4Q180.6 243.4 180.6 248.8Q180.6 252.2 178.8 255Q176.8 257.8 173.6 259Q177.6 260.4 180 263.6Q182.4 267 182.4 270.8Q182.4 276.8 178 280.4Q173.8 283.8 165 283.8H152ZM164.4 256.6Q175.4 256.6 175.4 249.2Q175.4 246 172.8 244Q170.4 241.8 165.2 241.8H157V256.6ZM166 279.2Q176.8 279.2 176.8 270.4Q176.8 261 164.6 261H157V279.2Z M200 220V102H212V220ZM218 220V102H236V220ZM254 220V102H260V220ZM229.8 242H216.8V237.4H248.8V242H235.2V283.8H229.8Z M266 220V102H278V220ZM296 220V102H302V220ZM308 220V102H326V220ZM284.6 237.4H298.2Q306.2 237.4 309.8 241Q313.6 244.4 313.6 250.8Q313.6 254.8 311 258.4Q308.4 262 304.2 263.2L315 283.8H309.2L298.8 263.4H289.8V283.8H284.6ZM298.8 258.8Q303.6 258.8 306 256.6Q308.2 254.6 308.2 250.8Q308.2 247 306 244.6Q303.6 242.4 298.8 242.4H289.8V258.8Z"/>
+
+      <!-- helle Glaskante links an jedem Balken -->
+      <g fill="#fff" opacity=".8">
+        <rect x="68" y="102" width="1.4" height="118"/>
+        <rect x="86" y="102" width="1.4" height="118"/>
+        <rect x="122" y="102" width="1.4" height="118"/>
+        <rect x="134" y="102" width="1.4" height="118"/>
+        <rect x="158" y="102" width="1.4" height="118"/>
+        <rect x="170" y="102" width="1.4" height="118"/>
+        <rect x="200" y="102" width="1.4" height="118"/>
+        <rect x="218" y="102" width="1.4" height="118"/>
+        <rect x="254" y="102" width="1.4" height="118"/>
+        <rect x="266" y="102" width="1.4" height="118"/>
+        <rect x="296" y="102" width="1.4" height="118"/>
+        <rect x="308" y="102" width="1.4" height="118"/>
+      </g>
+
+      <circle cx="200" cy="200" r="198" fill="none" stroke="url(#ringGrad)" stroke-width="4"/>
     </svg>
 
     <img class="logo-img" id="logoImg" alt="" style="display:none">
@@ -150,8 +82,9 @@
   <div class="row sync" id="syncRow">
     <span class="sync-text" id="syncText">Synchronizing Data, please wait</span><span class="spinner" aria-hidden="true">
       <svg viewBox="0 0 26 26" width="100%" height="100%">
+        <!-- weisse Spur: von 171 deg einmal im Uhrzeigersinn herum bis ~66 deg (Luecke unten links) -->
+        <circle cx="13" cy="13" r="11" fill="none" stroke="#6a53b4" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="17.1 52" transform="rotate(211 13 13)"/>
         <circle cx="13" cy="13" r="11" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="52 17.1" transform="rotate(-60 13 13)"/>
-        <circle cx="13" cy="13" r="11" fill="none" stroke="#6a53b4" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="10 59.1" transform="rotate(105 13 13)"/>
       </svg>
     </span>
   </div>
@@ -173,7 +106,7 @@
   </div>
 
   <div class="row status" id="statusRow">
-    <span class="pipe"></span> <span id="statusText">CURRENT LOADING STATUS</span> <span class="pipe"></span><span class="percent" id="percent">PERCENTAGE</span>
+    <span class="pipe">|</span> <span id="statusText">CURRENT LOADING STATUS</span> <span class="pipe">|</span><span class="percent" id="percent">PERCENTAGE</span>
   </div>
 
 </div>
