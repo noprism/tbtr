@@ -29,9 +29,10 @@ window.LoadingConfig = {
     fadeInSeconds: 3,    // sanftes Einblenden am Anfang
     shuffle: false,      // Reihenfolge mischen
     startRandom: false,  // mit zufaelligem Titel beginnen
-    tracks: [
-      // { src: "music/dein-song.mp3", title: "Song Name", artist: "Artist Name" },
-      { src: "music/demo-ambient.mp3", title: "Ambient Demo", artist: "Placeholder" }
-    ]
+    folder: "music/",    // alle Audiodateien (mp3, ogg, flac, wav ...) hier hineinwerfen
+    autoScan: true,      // Ordner automatisch einlesen (Titel/Interpret aus den Metadaten)
+    // Optional: zusaetzliche/ueberschriebene Titel von Hand, z.B.
+    // tracks: [ { src: "music/song.mp3", title: "Song Name", artist: "Artist Name" } ]
+    tracks: []
   }
 };

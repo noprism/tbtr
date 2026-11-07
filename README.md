@@ -17,10 +17,15 @@
 | `DownloadingFile(fileName)` | Zeile „Downloading: Datei – x/y Files“ |
 | `SetStatusChanged(status)` | Text zwischen den Strichen „\| STATUS \|“ |
 
-## Musik (js/config.js)
-Eigene Dateien in `music/` legen und unter `music.tracks` eintragen (mp3 oder ogg).
-Optionen: `volume`, `fadeInSeconds`, `shuffle`, `startRandom`, `enabled`.
-`music/demo-ambient.mp3` ist nur ein generierter Platzhalter – bitte ersetzen.
+## Musik (js/music.js, Einstellungen in js/config.js)
+Einfach alle Audiodateien (mp3, ogg, flac, wav, m4a …) in den Ordner `music/` legen. Titel und Interpret werden
+aus den Metadaten der Datei gelesen (ID3, Vorbis/FLAC); fehlen sie, dient der Dateiname (`Interpret - Titel.mp3`).
+Gefunden werden die Dateien in dieser Reihenfolge:
+1. `music/playlist.json` – mit `python music/make-playlist.py` erzeugen (nötig bei GitHub Pages & Co. ohne Ordner-Anzeige)
+2. Ordner-Anzeige des Webservers (nginx/Apache `autoindex`)
+3. GitHub-API (nur `*.github.io`, Notnagel)
+Optionen: `volume`, `fadeInSeconds`, `shuffle`, `startRandom`, `enabled`, `folder`, `autoScan`; optional `tracks` für Handeinträge.
+`music/demo-ambient.mp3` ist nur ein generierter Platzhalter – bitte löschen.
 
 ## Logo
 Statisches SVG-Logo (keine Animation): Ellipse 400×400 mit Farbverlauf-Ring und der Schriftzug „TBTR“
