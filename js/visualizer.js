@@ -29,6 +29,9 @@
   var BAR_W = (2 * Math.PI * R0 / BARS) * 0.46;
   var minDelta = 1000 / (cfg.fps || 45);
 
+  // Position unabhaengig vom Stylesheet erzwingen: 512 Einheiten = 128 % des Logos, Mitte auf der Logo-Mitte
+  canvas.style.cssText = "position:absolute;left:-14%;top:-14%;width:128%;height:128%;pointer-events:none";
+
   var ctx2d = canvas.getContext && canvas.getContext("2d");
   if (!ctx2d) { return; }
 

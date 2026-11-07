@@ -68,8 +68,8 @@ body {
 /* Visualizer: 512x512 Logo-Einheiten, Logo-Mitte in der Mitte */
 .logo .viz {
   position: absolute;
-  top: -5.6rem; left: -5.6rem;
-  width: 51.2rem; height: 51.2rem;
+  top: -14%; left: -14%;
+  width: 128%; height: 128%;
   pointer-events: none;
 }
 
