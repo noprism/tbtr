@@ -18,6 +18,8 @@
 
   <!-- ============ LOGO ============ -->
   <div class="logo" id="logo">
+    <!-- Musik-Visualizer (js/visualizer.js): Balken wachsen aus dem Ring nach aussen -->
+    <canvas class="viz" id="viz"></canvas>
     <!-- Statisches Logo (keine Animation): Ellipse 400x400 + Schriftzug "TBTR" aus "Libre Barcode 128 Text" (als Pfad eingebettet) -->
     <svg class="mark" viewBox="0 0 400 400" width="100%" height="100%" role="img" aria-label="TBTR">
       <defs>
@@ -114,6 +116,7 @@
 <audio id="bgm" preload="auto"></audio>
 
 <script src="js/music.js"></script>
+<script src="js/visualizer.js"></script>
 <script src="js/demo.js"></script>
 </body>
 </html>

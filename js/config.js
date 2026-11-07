@@ -13,6 +13,15 @@ window.LoadingConfig = {
   // (wird im Kreis zugeschnitten; leer lassen = SVG-Logo)
   logoImage: "",
 
+  // Musik-Visualizer rund um das Logo (reagiert auf die Hintergrundmusik)
+  viz: {
+    enabled: true,
+    bars: 96,           // Anzahl Balken (gerade Zahl)
+    maxLength: 46,      // maximale Balkenlaenge
+    fps: 45,            // weniger = schonender
+    crossOrigin: false  // true, wenn die Musik auf einer anderen Domain liegt (braucht CORS-Header!)
+  },
+
   // Hintergrundmusik
   music: {
     enabled: true,

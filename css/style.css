@@ -65,6 +65,13 @@ body {
   height: 100%;
 }
 .logo .logo-img { border-radius: 50%; object-fit: cover; }
+/* Visualizer: 512x512 Logo-Einheiten, Logo-Mitte in der Mitte */
+.logo .viz {
+  position: absolute;
+  top: -5.6rem; left: -5.6rem;
+  width: 51.2rem; height: 51.2rem;
+  pointer-events: none;
+}
 
 /* ------------------------ Zeilen / Texte ----------------------- */
 .row {

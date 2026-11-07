@@ -140,6 +140,7 @@
     next();
   }, false);
 
+  if (window.LoadingConfig && window.LoadingConfig.viz && window.LoadingConfig.viz.crossOrigin) { audio.crossOrigin = "anonymous"; }
   buildOrder();
   load(pos);
 })(window, document);
